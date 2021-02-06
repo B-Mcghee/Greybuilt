@@ -141,7 +141,6 @@ export default {
                 let self = this.
                 setTimeout(function(){
                     console.log("it needs to update");
-                    self.clearError();
                 }, 1000)
             }
             e.preventDefault();
