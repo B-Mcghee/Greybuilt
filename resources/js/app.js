@@ -7,28 +7,106 @@
 import './bootstrap';
 import "tailwindcss/tailwind.css"
 import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from './components/Home.vue';
+import BioList from './views/BioList.vue'
 
 window.Vue = Vue;
+Vue.use(VueRouter);
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+const routes = [
+    {
+        path: '/',
+        name: 'index',
+        component: Home
+    },
+    //   {
+    //     path: '/main',
+    //     name: 'Main',
+    //     component: Main
+    //   },
+      {
+        path: '/about',
+        name: 'About',
+        component: () => { return import ('./views/BioList.vue')}
+      },
+    //   {
+    //     path:'/about/:id',
+    //     name: 'SingleBio',
+    //     component: Bio,
+    //     props: true
+    //   },
+    //   {
+    //     path: '/projects',
+    //     name: 'Project',
+    //     component: () => { return import ('../views/ProjectList.vue') }
+    //   },
+    //   {
+    //     path:'/project/:id',
+    //     name:'SingleProject',
+    //     component: Project,
+    //     props: true
+    //   },
+    //   {
+    //     path: '/contact',
+    //     name: 'Contact',
+    //     component: () => { return import ('../views/Contact.vue') }
+    //   },
+    //   {
+    //     path: '/testimonials',
+    //     name: 'Testimonial',
+    //     component: () => { return import ('../views/TestimonialList.vue')}
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+    //   },
+    //   {
+    //     path: '/example',
+    //     name: 'Example',
+    //     component: Example
+    //   },
+    //   {
+    //     path: '/calendar',
+    //     name: 'Calendar',
+    //     component: Calendar
+    //   },
+    //   {
+    //     path: '/admin',
+    //     name: 'Admin',
+    //     component: Admin,
+    //     props: true,
+    //     children: [
+    //       {
+    //         path: 'Add',
+    //         name: 'AddProject',
+    //         component: AddProject,
+    //         props: true
+    //       }
+    //     ]
+    //   }
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+];
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+// Vue.use(VueApollo);
+// const apolloClient = new ApolloClient({
+//     // You should use an absolute URL here
+//     uri: 'http://127.0.0.1:8000/graphql'
+//   });
 
+//   const apolloProvider = new VueApollo({
+//     defaultClient: apolloClient,
+//   });
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
+
+// import moment from 'moment';
+
+// Vue.filter("timeago", value => moment(value).fromNow());
+// Vue.filter("longDate", value => moment(value).format("MMMM Do, YYYY"));
 const app = new Vue({
     el: '#app',
+    router,
+    // apolloProvider
 });
+

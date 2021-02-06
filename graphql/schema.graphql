@@ -55,6 +55,13 @@ type Bio {
     author: User! @hasOne
     coverImage: Image! @hasOne
 }
+type floorplan {
+    id: ID!
+    title: String!
+    description: String!
+    coverImage: Image! @hasOne
+    floorplanImages: [Image!]! @hasMany
+}
 
 type testimonial {
     id: ID!
